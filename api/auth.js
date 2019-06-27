@@ -37,8 +37,8 @@ module.exports = app => {
     const validateToken = async (req, res) => {
         const userData = req.body || null
         try {
-            if (userData) {
-                const token = jws.decode(userData.token, authSecret)
+            if (userData) {                
+                const token = jwt.decode(userData.token, authSecret)
                 if (new Date(token.exp * 1000) > new Date()) {
                     return res.send(true)
                     //Aqui pode ser renovado o token automáticamente...
